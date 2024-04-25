@@ -22,6 +22,7 @@ class CartController extends AbstractController
     {
         $cart = $session->get('cart', []);
 
+
         $data = [];
         $total = 0;
 
@@ -31,10 +32,9 @@ class CartController extends AbstractController
                 'offer' => $offer,
                 'quantity' => $quantity,
             ];
+
             $total += $offer->getPricing() * $quantity;
         }
-
-        $session->remove('panier');
 
         dd($session);
     }
@@ -44,6 +44,7 @@ class CartController extends AbstractController
     {
         $id = $offer->getId();
         $cart = $session->get('cart', []);
+        $totalCart = $session->get('totalCart', []);
 
         if (empty($cart[$id])) {
             $cart[$id] = 1;
@@ -51,7 +52,14 @@ class CartController extends AbstractController
             $cart[$id]++;
         }
 
+        if (empty($totalCart['count'])) {
+            $totalCart['count'] = 1;
+        } else {
+            $totalCart['count']++;
+        }
+
         $session->set('cart', $cart);
+        $session->set('totalCart', $totalCart);
 
         $this->addFlash('success', 'Produit ajouté au panier');
         return new JsonResponse(JsonResponse::HTTP_OK);
@@ -63,6 +71,7 @@ class CartController extends AbstractController
     {
         $id = $offer->getId();
         $cart = $session->get('cart', []);
+        $totalCart = $session->get('totalCart', []);
 
         if (!empty($cart[$id])) {
             if ($cart[$id] > 1) {
@@ -72,7 +81,16 @@ class CartController extends AbstractController
             }
         }
 
+        if (!empty($totalCart['count'])) {
+            if ($totalCart['count'] > 1) {
+                $totalCart['count']--;
+            } else {
+                unset($totalCart['count']);
+            }
+        }
+
         $session->set('cart', $cart);
+        $session->set('totalCart', $totalCart);
 
         $this->addFlash('success', 'Un produit a été retiré du panier');
         return new JsonResponse(JsonResponse::HTTP_OK);
@@ -83,12 +101,18 @@ class CartController extends AbstractController
     {
         $id = $offer->getId();
         $cart = $session->get('cart', []);
+        $totalCart = $session->get('totalCart', []);
 
         if (!empty($cart[$id])) {
             unset($cart[$id]);
         }
 
+        if (!empty($totalCart['count'])) {
+            unset($totalCart['count']);
+        }
+
         $session->set('cart', $cart);
+        $session->set('totalCart', $totalCart);
 
         $this->addFlash('success', 'Le produit a été retiré du panier');
         return new JsonResponse(JsonResponse::HTTP_OK);
