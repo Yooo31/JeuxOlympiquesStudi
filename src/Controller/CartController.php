@@ -36,7 +36,9 @@ class CartController extends AbstractController
             $total += $offer->getPricing() * $quantity;
         }
 
-        dd($session);
+        return $this->render('cart/index.html.twig',
+            compact('data', 'total')
+        );
     }
 
     #[Route('/add/{id}', name: 'add', requirements: ['id' => Requirement::DIGITS])]
