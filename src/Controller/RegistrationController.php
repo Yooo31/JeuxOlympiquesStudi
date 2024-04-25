@@ -32,6 +32,27 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // generate Username with first_name + last_name
+            $username = $user->getFirstName() . $user->getLastName();
+
+            // check if username already exists
+            $usernameExists = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+
+            // if username already exists, add +1 to the number at end of the last username. Exemple : johnDoe1, johnDoe2, johnDoe3, ...
+            if ($usernameExists) {
+                $username = $username . '1';
+                $usernameExists = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+                while ($usernameExists) {
+                    $username = substr($username, 0, -1) . ((int)substr($username, -1) + 1);
+                    $usernameExists = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+                }
+            }
+
+            $user->setUsername($username);
+
+            // generate a random token for the user
+            $user->setAccountKey(bin2hex(random_bytes(32)));
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

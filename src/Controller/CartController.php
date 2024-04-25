@@ -1,0 +1,96 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Offers;
+use App\Repository\OffersRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Routing\Requirement\Requirement;
+
+#[Route('/cart', name: 'cart.')]
+#[IsGranted('ROLE_USER')]
+class CartController extends AbstractController
+{
+    #[Route('/', name: 'index')]
+    public function index(SessionInterface $session, OffersRepository $offersRepository): Response
+    {
+        $cart = $session->get('cart', []);
+
+        $data = [];
+        $total = 0;
+
+        foreach ($cart as $id => $quantity) {
+            $offer = $offersRepository->find($id);
+            $data[] = [
+                'offer' => $offer,
+                'quantity' => $quantity,
+            ];
+            $total += $offer->getPricing() * $quantity;
+        }
+
+        $session->remove('panier');
+
+        dd($session);
+    }
+
+    #[Route('/add/{id}', name: 'add', requirements: ['id' => Requirement::DIGITS])]
+    public function addToCart(Offers $offer, SessionInterface $session): Response
+    {
+        $id = $offer->getId();
+        $cart = $session->get('cart', []);
+
+        if (empty($cart[$id])) {
+            $cart[$id] = 1;
+        } else {
+            $cart[$id]++;
+        }
+
+        $session->set('cart', $cart);
+
+        $this->addFlash('success', 'Produit ajouté au panier');
+        return new JsonResponse(JsonResponse::HTTP_OK);
+
+    }
+
+    #[Route('/remove/{id}', name: 'remove', requirements: ['id' => Requirement::DIGITS])]
+    public function removeOneToCart(Offers $offer, SessionInterface $session): Response
+    {
+        $id = $offer->getId();
+        $cart = $session->get('cart', []);
+
+        if (!empty($cart[$id])) {
+            if ($cart[$id] > 1) {
+                $cart[$id]--;
+            } else {
+                unset($cart[$id]);
+            }
+        }
+
+        $session->set('cart', $cart);
+
+        $this->addFlash('success', 'Un produit a été retiré du panier');
+        return new JsonResponse(JsonResponse::HTTP_OK);
+    }
+
+    #[Route('/delete/{id}', name: 'delete', requirements: ['id' => Requirement::DIGITS])]
+    public function deleteCart(Offers $offer, SessionInterface $session): Response
+    {
+        $id = $offer->getId();
+        $cart = $session->get('cart', []);
+
+        if (!empty($cart[$id])) {
+            unset($cart[$id]);
+        }
+
+        $session->set('cart', $cart);
+
+        $this->addFlash('success', 'Le produit a été retiré du panier');
+        return new JsonResponse(JsonResponse::HTTP_OK);
+    }
+}
