@@ -3,18 +3,86 @@
 {% block title %}Hello OrderController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<section>
+    <div class="mt-6 sm:mt-8 flex flex-wrap">
+        <div class="w-1/2 mt-6">
+            <form action="">
+                <h3>Détails de paiements</h3>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/yoan/Project/JeuxOlympiquesStudi/src/Controller/OrderController.php</code></li>
-        <li>Your template at <code>/home/yoan/Project/JeuxOlympiquesStudi/templates/order/index.html.twig</code></li>
-    </ul>
-</div>
+                <div class="mt-6">
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">Numéro de carte</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white" />
+                </div>
+
+                <div class="mt-6 flex flex-wrap">
+                    <div class="w-1/3">
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">Mois</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white" />
+                    </div>
+                    <div class="w-1/3">
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">Année</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white" />
+                    </div>
+                    <div class="w-1/3">
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">CVC</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white" />
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">Nom du titulaire</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white" />
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button type="submit" class="">Payer</button>
+                </div>
+            </form>
+        </div>
+        <div class="w-1/2 mt-6">
+            {% for element in data %}
+                <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                    <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                        <img class="h-20 w-20" src="/images/jo-mascotte-paris-2024.png" alt="Mascotte des Jeux Olympics Paris 2024" />
+
+                        <div class="flex items-center justify-between md:order-3 md:justify-end">
+                            <div class="text-end md:order-4 md:w-32">
+                                <p class="text-base font-bold text-gray-900 dark:text-white">{{ element.offer.pricing }} €</p>
+                            </div>
+                        </div>
+
+                        <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
+                            <p class="text-base font-medium text-gray-900 hover:underline dark:text-white">
+                                {{ element.offer.title }} pour les JO 2024 à Paris<br />
+                                Pour {{ element.offer.capacity }} personne(s)<br />
+                                x{{ element.quantity }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="flow-root">
+                <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
+                    <dl class="flex items-center justify-between gap-4 py-3">
+                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Total HT</dt>
+                        <dd class="text-base font-medium text-gray-900 dark:text-white">{{ totalHt }} €</dd>
+                    </dl>
+
+                    <dl class="flex items-center justify-between gap-4 py-3">
+                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Taxes</dt>
+                        <dd class="text-base font-medium text-gray-900 dark:text-white">15%</dd>
+                    </dl>
+
+                    <dl class="flex items-center justify-between gap-4 py-3">
+                        <dt class="text-base font-bold text-gray-900 dark:text-white">Total TTC</dt>
+                        <dd class="text-base font-bold text-gray-900 dark:text-white">{{ totalTtc }} €</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
