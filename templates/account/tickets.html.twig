@@ -4,13 +4,15 @@
 
 {% block body %}
 
-{% for ticket in tickets %}
-    <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
-        <div class="px-4 py-5 sm:px-6">
-            <h3 class="text-lg font-medium leading-6 text-gray-900">Ticket #{{ ticket.id }}</h3>
-            <img src="/images/qrcodes/{{ ticket.qrCode }}.png" alt="">
+<main class="p-4 md:ml-64 h-auto pt-20">
+    {% for ticket in tickets %}
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+            <div class="px-4 py-5 sm:px-6">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Ticket #{{ ticket.id }}</h3>
+                <img src="/images/qrcodes/{{ ticket.qrCode }}.png" alt="">
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
+</main>
 
 {% endblock %}
