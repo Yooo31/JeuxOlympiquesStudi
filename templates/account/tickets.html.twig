@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+
+{% for ticket in tickets %}
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+        <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Ticket #{{ ticket.id }}</h3>
+            <img src="/images/qrcodes/{{ ticket.qrCode }}.png" alt="">
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
