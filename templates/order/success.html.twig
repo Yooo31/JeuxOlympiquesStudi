@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement validé{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center h-screen">
+    <div class="text-center">
+        <p class="text-2xl font-semibold mb-4">{{ message }}</p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500 mx-auto mb-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0zm4.243 7.243a1 1 0 0 0-1.414-1.414L9 10.586l-1.829-1.829a1 1 0 1 0-1.414 1.414l2.543 2.543a1 1 0 0 0 1.414 0l5.586-5.586z" clip-rule="evenodd" />
+        </svg>
+    </div>
+</div>
+{% endblock %}

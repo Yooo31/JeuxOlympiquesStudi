@@ -8,8 +8,9 @@
     <div class="mt-6 sm:mt-8 flex flex-wrap">
         <div class="w-1/2 mt-6">
             <form action="{{ path('order.pay') }}" method="post">
-                <input type="hidden" name="data" value="{{ data|json_encode }}">
+                <input type="hidden" id="payment-data" name="data">
                 <input type="hidden" name="userId" value="{{ app.user.id }}">
+
                 <h3>Détails de paiements</h3>
 
                 <div class="mt-6">
@@ -86,5 +87,13 @@
         </div>
     </div>
 </section>
+
+<script>
+    var data = {};
+    {% for element in data %}
+        data[{{ element.offer.id }}] = {{ element.quantity }};
+    {% endfor %}
+    document.getElementById('payment-data').value = JSON.stringify(data);
+</script>
 
 {% endblock %}
