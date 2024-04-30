@@ -10,3 +10,7 @@ php bin/console asset-map:compile
 Migration
 
 php bin/console doctrine:migrations:migrate
+
+Fixtures
+
+php bin/console doctrine:fixtures:load
