@@ -8,7 +8,7 @@
     {% if app.user and app.user.isVerified %}
         <p>Votre compte est vérifié</p>
     {% else %}
-        <a href="{{ path('account.send_verification') }}">Envoyer un mail de vérification</a>
+        <a href="{{ path('account.send_verification') }}" class="inline-flex items-center text-lg font-medium text-primary-600 hover:underline dark:text-primary-500">Envoyer un mail de vérification</a>
     {% endif %}
 </main>
 
