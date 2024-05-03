@@ -25,4 +25,4 @@
 ###< symfony/asset-mapper ###
 
 .env
-/public/images/qrcode/
+public/images/qrcodes/
