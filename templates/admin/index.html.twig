@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<div class="py-6 px-16 max-w-screen-xl mx-auto">
+    <section class="bg-white dark:bg-gray-900">
+        <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+            <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl md:text-4xl font-extrabold">73M+</dt>
+                    <dd class="font-light text-gray-500 dark:text-gray-400">developers</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl md:text-4xl font-extrabold">1B+</dt>
+                    <dd class="font-light text-gray-500 dark:text-gray-400">contributors</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-3xl md:text-4xl font-extrabold">4M+</dt>
+                    <dd class="font-light text-gray-500 dark:text-gray-400">organizations</dd>
+                </div>
+            </dl>
+        </div>
+    </section>
+
+    <div class="flex flex-wrap justify-evenly xmy-16">
+        <div class="p-5 w-1/4">
+            <a href="{{ path('admin.offers') }}">
+                <div class="w-full p-4 rounded-lg border text-center shadow-md bg-gray-800 border-black">
+                    <div class="bg-primary-100 dark:bg-primary-900 w-12 h-12 rounded-lg justify-center items-center flex mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white block align-middle" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 10h9.231M6 14h9.231M18 5.086A5.95 5.95 0 0 0 14.615 4c-3.738 0-6.769 3.582-6.769 8s3.031 8 6.769 8A5.94 5.94 0 0 0 18 18.916"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-gray text-slate-500 font-semibold tracking-tight text-lg leading-7 mb-2 ">Les Offres</h3>
+                </div>
+            </a>
+        </div>
+        <div class="p-5 w-1/4">
+            <a href="{{ path('admin.decode') }}">
+                <div class="w-full p-4 rounded-lg border text-center shadow-md bg-gray-800 border-black">
+                    <div class="bg-primary-100 dark:bg-primary-900 w-12 h-12 rounded-lg justify-center items-center flex mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4Zm10 10h6v6h-6v-6Zm0-10h6v6h-6V4Zm-4 10h.01v.01H10V14Zm0 4h.01v.01H10V18Zm-3 2h.01v.01H7V20Zm0-4h.01v.01H7V16Zm-3 2h.01v.01H4V18Zm0-4h.01v.01H4V14Z"/>
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M7 7h.01v.01H7V7Zm10 10h.01v.01H17V17Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-gray text-slate-500 font-semibold tracking-tight text-lg leading-7 mb-2 ">Déchiffrer Qr Code</h3>
+                </div>
+            </a>
+        </div>
+        <div class="p-5 w-1/4">
+            <a href="{{ path('admin.stats') }}">
+                <div class="w-full p-4 rounded-lg border text-center shadow-md bg-gray-800 border-black">
+                    <div class="bg-primary-100 dark:bg-primary-900 w-12 h-12 rounded-lg justify-center items-center flex mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-gray text-slate-500 font-semibold tracking-tight text-lg leading-7 mb-2 ">Statistiques</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
