@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Offers;
 use App\Form\OffersType;
+use App\Repository\OffersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -43,9 +44,13 @@ class AdminController extends AbstractController
     }
 
     #[Route('/offers', name: 'offers')]
-    public function offers(): Response
+    public function offers(OffersRepository $repository): Response
     {
-        return $this->render('admin/.html.twig');
+        $offers = $repository->findAll();
+
+        return $this->render('admin/offers.html.twig', [
+            'offers' => $offers
+        ]);
     }
 
     #[Route('/offer/edit/{id}', name: 'offer.edit')]
