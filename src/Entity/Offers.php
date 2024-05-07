@@ -39,6 +39,9 @@ class Offers
     #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'offer')]
     private Collection $payments;
 
+    #[ORM\Column]
+    private ?bool $isInactive = null;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
@@ -147,6 +150,18 @@ class Offers
                 $payment->setOffer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isInactive(): ?bool
+    {
+        return $this->isInactive;
+    }
+
+    public function setInactive(bool $isInactive): static
+    {
+        $this->isInactive = $isInactive;
 
         return $this;
     }

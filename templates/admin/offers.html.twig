@@ -25,15 +25,30 @@
                                 <th scope="col" class="px-4 py-3">Titre</th>
                                 <th scope="col" class="px-4 py-3">Capacité</th>
                                 <th scope="col" class="px-4 py-3">Prix</th>
+                                <th scope="col" class="px-4 py-3">Status</th>
                                 <th scope="col" class="px-4 py-3 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for offer in offers %}
+                                {% if offer.isInactive %}
+                                    {% set color = 'bg-red-600' %}
+                                    {% set name = 'Inactif' %}
+                                {% else %}
+                                    {% set color = 'bg-green-400' %}
+                                    {% set name = 'Actif' %}
+                                {% endif %}
+
                                 <tr class="border-b dark:border-gray-700">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ offer.title }}</th>
                                     <td class="px-4 py-3">{{ offer.capacity }}</td>
                                     <td class="px-4 py-3">{{ offer.pricing }}</td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-4 w-4 rounded-full inline-block mr-2 {{color}}"></div>
+                                            {{name}}
+                                        </div>
+                                    </td>
                                     <td class="px-4 py-3 flex justify-center">
                                         <a href="{{ path('admin.offer.edit', {id: offer.id}) }}" class="mr-4 py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 -ml-0.5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -42,12 +57,21 @@
                                             </svg>
                                             Modifier
                                         </a>
-                                        <a href="{{ path('admin.offer.inactive', {id: offer.id}) }}" class="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 -ml-0.5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                            </svg>
-                                            Supprimer
-                                        </button>
+                                        {% if offer.isInactive %}
+                                            <a href="{{ path('admin.offer.active', {id: offer.id}) }}" class="flex items-center text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-900">
+                                                <svg class="mr-2 w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 8H4m4 6h8m0 0-2-2m2 2-2 2M4 6v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z"/>
+                                                </svg>
+                                                Intégrer
+                                            </a>
+                                        {% else %}
+                                            <a href="{{ path('admin.offer.inactive', {id: offer.id}) }}" class="flex items-center text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-yellow-400 dark:text-yellow-400 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-500">
+                                                <svg class="mr-2 w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v5m0 0 2-2m-2 2-2-2M3 6v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1Zm2 2v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8H5Z"/>
+                                                </svg>
+                                                Archiver
+                                            </a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -63,12 +63,32 @@ class AdminController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Offre modifiée avec succès');
 
-            return $this->redirectToRoute('home.index');
+            return $this->redirectToRoute('admin.index');
         }
 
         return $this->render('admin/offerEdit.html.twig', [
             'form' => $form,
             'offer' => $offer
         ]);
+    }
+
+    #[Route('/offer/inactive/{id}', name: 'offer.inactive')]
+    public function inactiveOffer(Offers $offer, EntityManagerInterface $em): Response
+    {
+        $offer->setInactive(true);
+        $em->flush();
+        $this->addFlash('success', 'Offre archivée avec succès');
+
+        return $this->redirectToRoute('admin.index');
+    }
+
+    #[Route('/offer/active/{id}', name: 'offer.active')]
+    public function activeOffer(Offers $offer, EntityManagerInterface $em): Response
+    {
+        $offer->setInactive(false);
+        $em->flush();
+        $this->addFlash('success', 'Offre réintégrée avec succès');
+
+        return $this->redirectToRoute('admin.index');
     }
 }
