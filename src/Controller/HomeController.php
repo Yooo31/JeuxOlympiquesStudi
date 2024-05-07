@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(Request $request, OffersRepository $repository): Response
     {
-        $offers = $repository->findAll();
+        $offers = $repository->findBy(['isInactive' => false]);
 
         return $this->render('home/index.html.twig', [
             'offers' => $offers,
