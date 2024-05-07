@@ -56,6 +56,7 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+            $this->addFlash('success', 'Offre modifiée avec succès');
 
             return $this->redirectToRoute('home.index');
         }
