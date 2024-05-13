@@ -72,6 +72,30 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/offer/create', name: 'offer.create')]
+    public function offerCreate(Request $request, EntityManagerInterface $em): Response
+    {
+        $offer = new Offers();
+        $form = $this->createForm(OffersType::class, $offer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $offer->setInactive(false);
+            $offer->setCreatedAt(new \DateTimeImmutable());
+            $offer->setUpdatedAt(new \DateTimeImmutable());
+
+            $em->persist($offer);
+            $em->flush();
+            $this->addFlash('success', 'Offre ajouté avec succès');
+
+            return $this->redirectToRoute('admin.index');
+        }
+
+        return $this->render('admin/offerNew.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/offer/inactive/{id}', name: 'offer.inactive')]
     public function inactiveOffer(Offers $offer, EntityManagerInterface $em): Response
     {
