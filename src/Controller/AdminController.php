@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Offers;
+use App\Entity\Payment;
 use App\Form\OffersType;
 use App\Repository\OffersRepository;
+use App\Repository\PaymentRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -32,10 +35,37 @@ class AdminController extends AbstractController
     }
 
     #[Route('/decode', name: 'decode')]
-    public function decode(): Response
+    public function decode(Request $request, UserRepository $userRepository, PaymentRepository $paymentRepository): Response
     {
-        return $this->render('admin/.html.twig');
+        $user = null;
+        $payment = null;
+        $offerTitle = null;
+
+        $code = $request->request->get('code');
+
+        if ($code) {
+            $codeUser = substr($code, 0, 64);
+            $codePayment = substr($code, 64);
+
+            $user = $userRepository->findOneBy(['account_key' => $codeUser]);
+            $payment = $paymentRepository->findOneBy(['payment_key' => $codePayment]);
+
+            if ($payment instanceof Payment) {
+                $offer = $payment->getOffer();
+                if ($offer instanceof Offers) {
+                    $offerTitle = $offer->getTitle();
+                }
+            }
+        }
+
+        return $this->render('admin/decode.html.twig', [
+            'code' => $code,
+            'user' => $user,
+            'payment' => $payment,
+            'offerTitle' => $offerTitle
+        ]);
     }
+
 
     #[Route('/stats', name: 'stats')]
     public function stats(): Response
