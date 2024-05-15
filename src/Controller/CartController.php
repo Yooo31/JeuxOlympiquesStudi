@@ -64,8 +64,7 @@ class CartController extends AbstractController
         $session->set('totalCart', $totalCart);
 
         $this->addFlash('success', 'Produit ajouté au panier');
-        return new JsonResponse(JsonResponse::HTTP_OK);
-
+        return $this->redirectToRoute('cart.index');
     }
 
     #[Route('/remove/{id}', name: 'remove', requirements: ['id' => Requirement::DIGITS])]
