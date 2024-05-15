@@ -24,10 +24,13 @@ use Endroid\QrCode\ErrorCorrectionLevel;
 class OrderController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, OffersRepository $offersRepository): Response
+    public function index(Request $request, SessionInterface $session, OffersRepository $offersRepository): Response
     {
-        $cart = $session->get('cart', []);
-
+        if ($id = $request->query->get('id')) {
+            $cart[$id] = 1;
+        } else {
+            $cart = $session->get('cart', []);
+        }
 
         $data = [];
         $totalHt = 0;
