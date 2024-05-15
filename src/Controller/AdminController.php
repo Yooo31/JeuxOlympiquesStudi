@@ -68,9 +68,27 @@ class AdminController extends AbstractController
 
 
     #[Route('/stats', name: 'stats')]
-    public function stats(): Response
+    public function stats(OffersRepository $offersRepository, PaymentRepository $paymentRepository, PaymentUserService $paymentUserService): Response
     {
-        return $this->render('admin/.html.twig');
+        $paymentTotalCount = $paymentUserService->getPaymentCount();
+        $offers = $offersRepository->findAll();
+        $stats = [];
+
+        foreach ($offers as $offer) {
+            $offerId = $offer->getId();
+            $payments = $paymentRepository->findBy(['offer' => $offerId]);
+            $paymentCount = count($payments);
+
+            $stats[] = [
+                'offer' => $offer,
+                'paymentCount' => $paymentCount
+            ];
+        }
+
+        return $this->render('admin/stats.html.twig', [
+            'stats' => $stats,
+            'paymentTotalCount' => $paymentTotalCount
+        ]);
     }
 
     #[Route('/offers', name: 'offers')]

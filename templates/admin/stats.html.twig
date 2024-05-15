@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block body %}
+    <section class="md:py-16 bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 flex justify-center items-center h-screen">
+        <div class="mx-auto w-3/4 px-4 lg:px-12 mb-20">
+
+            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+                <div class="flex justify-start space-y-3 md:space-y-0 md:space-x-4 p-4">
+                    <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                        <h2 class="text-xl font-semibold">Statistiques de ventes</h2>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-4 py-3">Titre</th>
+                                <th scope="col" class="px-4 py-3">Capacité</th>
+                                <th scope="col" class="px-4 py-3">Prix</th>
+                                <th scope="col" class="px-4 py-3">Status</th>
+                                <th scope="col" class="px-4 py-3">Nombre de ventes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stat in stats %}
+                                {% if stat.offer.isInactive %}
+                                    {% set color = 'bg-red-600' %}
+                                    {% set name = 'Inactif' %}
+                                {% else %}
+                                    {% set color = 'bg-green-400' %}
+                                    {% set name = 'Actif' %}
+                                {% endif %}
+
+                                <tr class="border-b dark:border-gray-700">
+                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ stat.offer.title }}</th>
+                                    <td class="px-4 py-3">{{ stat.offer.capacity }}</td>
+                                    <td class="px-4 py-3">{{ stat.offer.pricing }}</td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-4 w-4 rounded-full inline-block mr-2 {{color}}"></div>
+                                            {{name}}
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        {{ stat.paymentCount }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex flex-col md:flex-row justify-end p-4">
+                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-8">
+                      Ventes totales : &nbsp;
+                      <span class="font-semibold text-gray-900 dark:text-white">{{ paymentTotalCount }}</span>
+                  </span>
+              </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
