@@ -17,10 +17,11 @@ class OffersControllerTest extends WebTestCase
 
         $this->assertSelectorExists('#offers');
 
-        $this->assertCount(3, $crawler->filter('#offerTitle'));
+        $this->assertCount(4, $crawler->filter('#offerTitle'));
 
         $this->assertSelectorTextContains('#offers', 'Pack Solo');
         $this->assertSelectorTextContains('#offers', 'Pack Duo');
         $this->assertSelectorTextContains('#offers', 'Pack Famille');
+        $this->assertSelectorTextContains('#offers', 'Pack Test');
     }
 }

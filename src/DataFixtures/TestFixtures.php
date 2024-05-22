@@ -34,6 +34,15 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($offer);
+
+        $offer = new Offers();
+        $offer->setTitle('Pack Test')
+            ->setPricing(200)
+            ->setCapacity(10)
+            ->setInactive(1)
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setUpdatedAt(new \DateTimeImmutable());
+        $manager->persist($offer);
     }
 
 
