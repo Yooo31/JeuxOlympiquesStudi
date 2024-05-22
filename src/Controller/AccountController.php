@@ -49,7 +49,6 @@ class AccountController extends AbstractController
     {
         $user = $this->getUser();
         $allTickets = $tickets->findBy(['user' => $user]);
-        // dd($allTickets);
 
         return $this->render('account/tickets.html.twig', [
             'tickets' => $allTickets,

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Offers;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -20,6 +21,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $this->loadOfferData($manager);
+        $this->loadUserData($manager);
 
         $manager->flush();
     }
@@ -43,6 +45,33 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($offer);
+    }
+
+    public function loadUserData(ObjectManager $manager): void
+    {
+        $user = new User();
+        $user->setRoles(['ROLE_USER'])
+            ->setEmail('user@verified.fr')
+            ->setPassword($this->passwordHasher->hashPassword($user, 'user'))
+            ->setUsername('User')
+            ->setVerified(true)
+            ->setFirstName('User')
+            ->setLastName('User')
+            ->setPhone('0000000000')
+            ->setAccountKey('c9187d98a0717ae19e2627d9d338b1b12ad241ae53df1ba23ba940a0acd23c52');
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setRoles(['ROLE_USER'])
+            ->setEmail('user@nonverified.fr')
+            ->setPassword($this->passwordHasher->hashPassword($user, 'user'))
+            ->setUsername('User')
+            ->setVerified(false)
+            ->setFirstName('User')
+            ->setLastName('User')
+            ->setPhone('0000000000')
+            ->setAccountKey('c9187d98a0717ae19e2627d9d338b1b12ad241ae53df1ba23ba940a0acd23c53');
+        $manager->persist($user);
     }
 
 
