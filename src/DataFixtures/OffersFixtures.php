@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Offers;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class OffersFixtures extends Fixture
+class OffersFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -38,5 +39,10 @@ class OffersFixtures extends Fixture
         $manager->persist($offer);
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['production', 'test'];
     }
 }

@@ -17,4 +17,18 @@ php bin/console doctrine:migrations:migrate
 
 Fixtures
 
-php bin/console doctrine:fixtures:load
+php bin/console doctrine:fixtures:load --group=production
+
+# Testing
+
+## Drop DB
+php bin/console doctrine:database:drop --env=test --force
+
+## Create DB
+php bin/console doctrine:database:create --env=test
+
+## Migrate
+php bin/console doctrine:migrations:migrate --env=test
+
+## Fixtures
+php bin/console doctrine:fixtures:load --env=test --group=test
