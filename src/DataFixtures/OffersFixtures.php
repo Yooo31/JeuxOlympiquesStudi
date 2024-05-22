@@ -14,6 +14,7 @@ class OffersFixtures extends Fixture
         $offer->setTitle('Pack Solo')
             ->setPricing(150)
             ->setCapacity(1)
+            ->setInactive(0)
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($offer);
@@ -22,6 +23,7 @@ class OffersFixtures extends Fixture
         $offer->setTitle('Pack Duo')
             ->setPricing(280)
             ->setCapacity(2)
+            ->setInactive(0)
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($offer);
@@ -30,6 +32,7 @@ class OffersFixtures extends Fixture
         $offer->setTitle('Pack Famille')
             ->setPricing(550)
             ->setCapacity(4)
+            ->setInactive(0)
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($offer);
