@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -199,10 +198,8 @@ class AdminControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/admin/offer/edit/' . $offer->getId());
 
-        // Vérifiez que la page de création d'offre s'affiche correctement
         $this->assertResponseIsSuccessful();
 
-        // Simulez la soumission du formulaire
         $form = $crawler->selectButton('Confirmer')->form([
             'offers[title]' => 'Pack Test Edited',
             'offers[capacity]' => 10,
@@ -211,16 +208,12 @@ class AdminControllerTest extends WebTestCase
 
         $client->submit($form);
 
-        // Vérifiez la redirection après la soumission du formulaire
         $this->assertResponseRedirects('/admin/');
 
-        // Suivez la redirection
         $client->followRedirect();
 
-        // Vérifiez le message flash de succès
         $this->assertSelectorTextContains('#falshSection', 'Offre modifiée avec succès');
 
-        // Vérifiez que l'offre a été créée dans la base de données
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test Edited']);
         $this->assertNotNull($offer);
         $this->assertEquals('Pack Test Edited', $offer->getTitle());
@@ -244,10 +237,8 @@ class AdminControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/admin/offer/edit/' . $offer->getId());
 
-        // Vérifiez que la page de création d'offre s'affiche correctement
         $this->assertResponseIsSuccessful();
 
-        // Simulez la soumission du formulaire
         $form = $crawler->selectButton('Confirmer')->form([
             'offers[title]' => 'Pack Test',
             'offers[capacity]' => 10,
@@ -256,16 +247,12 @@ class AdminControllerTest extends WebTestCase
 
         $client->submit($form);
 
-        // Vérifiez la redirection après la soumission du formulaire
         $this->assertResponseRedirects('/admin/');
 
-        // Suivez la redirection
         $client->followRedirect();
 
-        // Vérifiez le message flash de succès
         $this->assertSelectorTextContains('#falshSection', 'Offre modifiée avec succès');
 
-        // Vérifiez que l'offre a été créée dans la base de données
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test']);
         $this->assertNotNull($offer);
         $this->assertEquals('Pack Test', $offer->getTitle());
@@ -286,10 +273,8 @@ class AdminControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/admin/offer/create');
 
-        // Vérifiez que la page de création d'offre s'affiche correctement
         $this->assertResponseIsSuccessful();
 
-        // Simulez la soumission du formulaire
         $form = $crawler->selectButton('Confirmer')->form([
             'offers[title]' => 'Pack Test Create',
             'offers[capacity]' => 10,
@@ -298,16 +283,12 @@ class AdminControllerTest extends WebTestCase
 
         $client->submit($form);
 
-        // Vérifiez la redirection après la soumission du formulaire
         $this->assertResponseRedirects('/admin/');
 
-        // Suivez la redirection
         $client->followRedirect();
 
-        // Vérifiez le message flash de succès
         $this->assertSelectorTextContains('#falshSection', 'Offre ajouté avec succès');
 
-        // Vérifiez que l'offre a été créée dans la base de données
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test Create']);
         $this->assertNotNull($offer);
         $this->assertEquals('Pack Test Create', $offer->getTitle());
@@ -317,12 +298,10 @@ class AdminControllerTest extends WebTestCase
         $this->assertInstanceOf(\DateTimeImmutable::class, $offer->getCreatedAt());
         $this->assertInstanceOf(\DateTimeImmutable::class, $offer->getUpdatedAt());
 
-        // Supprimez l'offre de la base de données
         $em = $client->getContainer()->get('doctrine')->getManager();
         $em->remove($offer);
         $em->flush();
 
-        // Vérifiez que l'offre a été supprimée
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test Create']);
         $this->assertNull($offer);
     }
