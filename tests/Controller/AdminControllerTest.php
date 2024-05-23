@@ -212,7 +212,7 @@ class AdminControllerTest extends WebTestCase
 
         $client->followRedirect();
 
-        $this->assertSelectorTextContains('#falshSection', 'Offre modifiée avec succès');
+        $this->assertSelectorTextContains('#flashSection', 'Offre modifiée avec succès');
 
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test Edited']);
         $this->assertNotNull($offer);
@@ -251,7 +251,7 @@ class AdminControllerTest extends WebTestCase
 
         $client->followRedirect();
 
-        $this->assertSelectorTextContains('#falshSection', 'Offre modifiée avec succès');
+        $this->assertSelectorTextContains('#flashSection', 'Offre modifiée avec succès');
 
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test']);
         $this->assertNotNull($offer);
@@ -287,7 +287,7 @@ class AdminControllerTest extends WebTestCase
 
         $client->followRedirect();
 
-        $this->assertSelectorTextContains('#falshSection', 'Offre ajouté avec succès');
+        $this->assertSelectorTextContains('#flashSection', 'Offre ajouté avec succès');
 
         $offer = $client->getContainer()->get('doctrine')->getRepository(Offers::class)->findOneBy(['title' => 'Pack Test Create']);
         $this->assertNotNull($offer);
