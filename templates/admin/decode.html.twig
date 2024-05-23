@@ -20,15 +20,15 @@
           </form>
 
           {% if user is defined and user is not null %}
-            <p>User trouvé: {{ user.username }}</p>
+            <p id="user-id">User trouvé: {{ user.username }}</p>
           {% endif %}
 
           {% if payment is defined and payment is not null %}
-            <p>Offre trouvée: {{ payment.createdAt|date('Y-m-d H:i:s') }}</p>
+            <p id="payment-date">Offre trouvée: {{ payment.createdAt|date('Y-m-d H:i:s') }}</p>
           {% endif %}
 
           {% if offerTitle is defined and offerTitle is not null %}
-            <p>Offre trouvée: {{ offerTitle }}</p>
+            <p id="offer-title">Offre trouvée: {{ offerTitle }}</p>
           {% endif %}
         </turbo-frame>
       </div>

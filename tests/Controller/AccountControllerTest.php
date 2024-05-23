@@ -27,7 +27,6 @@ class AccountControllerTest extends WebTestCase
         $client->getCookieJar()->set($cookie);
     }
 
-
     public function testAccessWithoutUserRoleRedirectsToLogin()
     {
         $client = static::createClient();
