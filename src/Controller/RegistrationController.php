@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
@@ -64,16 +65,20 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('support@jo-studi.fr', 'Support'))
-                    ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
+            try {
+                // Générer un URL signé et l'envoyer par email à l'utilisateur
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                    (new TemplatedEmail())
+                        ->from(new Address('support@jo-studi.fr', 'Support'))
+                        ->to($user->getEmail())
+                        ->subject('Please Confirm your Email')
+                        ->htmlTemplate('registration/confirmation_email.html.twig')
+                );
+            } catch (TransportExceptionInterface $e) {
+                $this->addFlash('danger', 'Erreur lors de l\'envoi du mail, serveur SMTP inactif. Cliquez sur envoyer un mail de vérification pour confirmer manuellement votre compte après vous être connecté.');
+                return $this->redirectToRoute('account.index'); // Rediriger l'utilisateur vers le formulaire d'inscription
+            }
 
-            // do anything else you need here, like send an email
 
             return $security->login($user, AppAuthenticator::class, 'main');
         }
