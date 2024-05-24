@@ -12,7 +12,7 @@ class SecurityControllerTest extends WebTestCase
         $client->request('GET', '/login');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Please sign in');
+        $this->assertSelectorTextContains('h1', 'Se connecter');
     }
 
     public function testLoginWithBadCredentials()
@@ -20,7 +20,7 @@ class SecurityControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/login');
 
-        $form = $crawler->selectButton('Sign in')->form([
+        $form = $crawler->selectButton('Connexion')->form([
             'email' => 'admin',
             'password' => 'fakepassword',
         ]);
@@ -28,7 +28,7 @@ class SecurityControllerTest extends WebTestCase
 
         $this->assertResponseRedirects();
         $client->followRedirect();
-        $this->assertSelectorExists('.alert-danger');
+        $this->assertSelectorExists('#loginError');
     }
 
     public function testSuccessfullLogin()
@@ -36,7 +36,7 @@ class SecurityControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/login');
 
-        $form = $crawler->selectButton('Sign in')->form([
+        $form = $crawler->selectButton('Connexion')->form([
             'email' => 'admin',
             'password' => 'admin',
         ]);
