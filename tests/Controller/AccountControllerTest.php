@@ -84,6 +84,9 @@ class AccountControllerTest extends WebTestCase
 
         $updatedUser = $userRepository->findOneBy(['email' => 'user@nonverified.fr']);
         $this->assertTrue($updatedUser->isVerified());
+
+        $testUser->setVerified(false);
+        $entityManager->flush();
     }
 
     public function testAccessTicketList()

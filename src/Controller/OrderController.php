@@ -145,7 +145,8 @@ class OrderController extends AbstractController
         $writer = new PngWriter();
         $result = $writer->write($qr_code);
 
-        $result->saveToFile('images/qrcodes/' . $nameFile);
+        $qrCodePath = $_ENV['QR_CODE_PATH'] ?? 'images/qrcodes/';
+        $result->saveToFile($qrCodePath . $nameFile);
 
         return $nameFile;
     }
