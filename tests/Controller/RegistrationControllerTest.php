@@ -47,7 +47,6 @@ class RegistrationControllerTest extends WebTestCase
         $form['registration_form[plainPassword]'] = 'test';
         $form['registration_form[agreeTerms]']->tick();
 
-
         $client->submit($form);
 
         $this->assertEquals(422, $client->getResponse()->getStatusCode());
