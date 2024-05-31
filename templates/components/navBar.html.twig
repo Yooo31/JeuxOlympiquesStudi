@@ -3,7 +3,9 @@
         <div class="flex flex-wrap justify-between items-center">
             <div class="flex justify-start items-center">
                 <a href="{{ path('home.index') }}" class="flex items-center justify-between mr-4">Accueil</a>
-                <a href="{{ path('admin.index') }}" class="flex items-center justify-between mr-4">Administration</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin.index') }}" class="flex items-center justify-between mr-4">Administration</a>
+                {% endif %}
             </div>
 
             <div class="flex items-center">
