@@ -27,3 +27,6 @@
 .env
 .env.test
 public/images/qrcodes/
+
+node_modules/
+public/adminer.php
