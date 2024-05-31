@@ -14,7 +14,7 @@
                 {{ form_start(registrationForm, {'attr': {'class': 'space-y-4 md:space-y-6'}}) }}
 
                 <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prénom</label>
+                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prénom <span class="text-red-600">*</span></label>
                     {{ form_widget(registrationForm.first_name, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
                     <div class="text-red-600">
                         {{ form_errors(registrationForm.first_name) }}
@@ -22,7 +22,7 @@
                 </div>
 
                 <div>
-                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom</label>
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom <span class="text-red-600">*</span></label>
                     {{ form_widget(registrationForm.last_name, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
                     <div class="text-red-600">
                         {{ form_errors(registrationForm.last_name) }}
@@ -30,7 +30,7 @@
                 </div>
 
                 <div>
-                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Téléphone</label>
+                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Téléphone <span class="text-red-600">*</span></label>
                     {{ form_widget(registrationForm.phone, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
                     <div class="text-red-600">
                         {{ form_errors(registrationForm.phone) }}
@@ -38,7 +38,7 @@
                 </div>
 
                 <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mail</label>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mail <span class="text-red-600">*</span></label>
                     {{ form_widget(registrationForm.email, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
                     <div class="text-red-600">
                         {{ form_errors(registrationForm.email) }}
@@ -46,7 +46,7 @@
                 </div>
 
                 <div>
-                    <label for="plainPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe</label>
+                    <label for="plainPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe <span class="text-red-600">*</span></label>
                     {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
                     <div class="text-red-600">
                         {{ form_errors(registrationForm.plainPassword) }}
@@ -58,7 +58,7 @@
                         {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800'}}) }}
                     </div>
                     <div class="ml-3 text-sm">
-                        <label for="terms" class="font-light text-gray-500 dark:text-gray-300">J'accepte les <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Termes et Conditions</a></label>
+                        <label for="terms" class="font-light text-gray-500 dark:text-gray-300">J'accepte les <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Termes et Conditions <span class="text-red-600">*</span></a></label>
                     </div>
                 </div>
 
