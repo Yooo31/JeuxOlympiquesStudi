@@ -8,7 +8,15 @@ RUN apt-get update && \
         zlib1g-dev \
         libzip-dev \
         unzip \
-        && docker-php-ext-install pdo_mysql intl zip
+        libpng-dev \
+	&& docker-php-ext-install pdo_mysql intl zip gd
+
+RUN apt-get install -y \
+        libfreetype-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-install -j$(nproc) gd
 
 # Activer les modules Apache nécessaires pour Symfony
 RUN a2enmod rewrite
