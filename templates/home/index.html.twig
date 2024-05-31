@@ -5,7 +5,7 @@
 {% block body %}
 
 <section class="h-screen">
-    <div class="h-4/5 flex items-center" style="background-image:url(https://source.unsplash.com/800x600/?nature)">
+    <div id="home" class="h-4/5 flex items-center">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
             <div class="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36 my-8">
                 <span class="font-semibold text-white uppercase">
@@ -88,8 +88,11 @@
 <section id="knowMore">
     <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-            <p class="mb-4">We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need.</p>
-            <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p>
+            <p class="mb-4">
+                Les Jeux Olympiques, un événement sportif international de renom, rassemblent les athlètes les plus talentueux du monde entier pour célébrer l'excellence et la camaraderie. Depuis leur création dans la Grèce antique jusqu'à leur résurgence moderne, les Jeux ont évolué pour devenir un symbole de paix et d'unité mondiale.
+                <br /><br />
+                Découvrez l'histoire fascinante de cette tradition millénaire et laissez-vous inspirer par les exploits héroïques et les moments inoubliables qui ont marqué chaque édition des Jeux.
+            </p>
 
             <div class="mt-4">
                 <a href="#" title="" class="inline-flex items-center text-lg font-medium text-primary-600 hover:underline dark:text-primary-500">
@@ -102,8 +105,8 @@
             </div>
         </div>
         <div class="grid grid-cols-2 gap-4 mt-8">
-            <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">
-            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">
+            <img class="w-full rounded-lg" src="/images/relais-flamme-olympique-left.jpg" alt="office content 1">
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="/images/relais-flamme-olympique-right.jpg" alt="office content 2">
         </div>
     </div>
 </section>
@@ -117,96 +120,52 @@
 
             <div class="p-5 w-1/3">
                 <article class="w-full p-4 rounded-lg border shadow-md bg-gray-800 border-gray-700">
-                    <a href="#">
-                        <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="https://source.unsplash.com/800x600/?nature" alt="Nature"/>
-                    </a>
-                    <span class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded bg-primary-200 text-primary-800">
-                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path>
-                            <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
-                        </svg>
-                        Article
-                    </span>
+                    <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="/images/sports/rugby.avif" alt="Sport aux JO"/>
 
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">
-                        <a href="#">Our first project with React</a>
-                    </h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">Rugby à 7</h2>
                     <p class="mb-5 font-light text-gray-400">
-                        Static websites are now used to bootstrap lots of websites and are
-                        becoming the basis for a variety of tools that even influence both web
-                        designers and developers influence both web designers and developers.
+                        Le rugby, réintroduit aux Jeux Olympiques en 2016, se joue en équipes de sept joueurs sur un terrain herbeux.
+                        Ce sport dynamique combine vitesse, force et stratégie, offrant des matchs intenses et spectaculaires.
+                        Les essais, les plaquages et les courses effrénées en font un spectacle captivant.
                     </p>
                 </article>
             </div>
 
             <div class="p-5 w-1/3">
                 <article class="w-full p-4 rounded-lg border shadow-md bg-gray-800 border-gray-700">
-                    <a href="#">
-                        <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="https://source.unsplash.com/800x600/?nature" alt="Nature"/>
-                    </a>
-                    <span class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded bg-primary-200 text-primary-800">
-                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path>
-                            <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
-                        </svg>
-                        Article
-                    </span>
+                    <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="/images/sports/athletisme.avif" alt="Sport aux JO"/>
 
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">
-                        <a href="#">Our first project with React</a>
-                    </h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">Athlétisme</h2>
                     <p class="mb-5 font-light text-gray-400">
-                        Static websites are now used to bootstrap lots of websites and are
-                        becoming the basis for a variety of tools that even influence both web
-                        designers and developers influence both web designers and developers.
+                        L'athlétisme est au cœur des Jeux Olympiques, englobant des épreuves de course, de saut et de lancer.
+                        Les compétitions vont du sprint de 100 mètres au marathon, en passant par le saut en hauteur et le lancer du javelot.
+                        C'est le sport ultime de vitesse, d'endurance et de puissance.
                     </p>
                 </article>
             </div>
 
             <div class="p-5 w-1/3">
                 <article class="w-full p-4 rounded-lg border shadow-md bg-gray-800 border-gray-700">
-                    <a href="#">
-                        <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="https://source.unsplash.com/800x600/?nature" alt="Nature"/>
-                    </a>
-                    <span class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded bg-primary-200 text-primary-800">
-                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path>
-                            <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
-                        </svg>
-                        Article
-                    </span>
+                    <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="/images/sports/natation.avif" alt="Sport aux JO"/>
 
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">
-                        <a href="#">Our first project with React</a>
-                    </h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">Natation</h2>
                     <p class="mb-5 font-light text-gray-400">
-                        Static websites are now used to bootstrap lots of websites and are
-                        becoming the basis for a variety of tools that even influence both web
-                        designers and developers influence both web designers and developers.
+                        La natation est une discipline olympique phare, regroupant des épreuves variées telles que le crawl, le dos, la brasse et le papillon.
+                        Les nageurs concourent en individuel ou en relais sur différentes distances.
+                        La combinaison de technique, de vitesse et d'endurance fait de ce sport un spectacle palpitant.
                     </p>
                 </article>
             </div>
 
             <div class="p-5 w-1/3">
                 <article class="w-full p-4 rounded-lg border shadow-md bg-gray-800 border-gray-700">
-                    <a href="#">
-                        <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="https://source.unsplash.com/800x600/?nature" alt="Nature"/>
-                    </a>
-                    <span class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded bg-primary-200 text-primary-800">
-                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path>
-                            <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
-                        </svg>
-                        Article
-                    </span>
+                    <img class="mb-5 rounded-lg max-w-full h-auto block align-middle" src="/images/sports/gymnastique.avif" alt="Sport aux JO"/>
 
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">
-                        <a href="#">Our first project with React</a>
-                    </h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">Gymnastique</h2>
                     <p class="mb-5 font-light text-gray-400">
-                        Static websites are now used to bootstrap lots of websites and are
-                        becoming the basis for a variety of tools that even influence both web
-                        designers and developers influence both web designers and developers.
+                        La gymnastique olympique se divise en deux catégories principales : la gymnastique artistique et la gymnastique rythmique.
+                        Elle allie grâce, force et souplesse, avec des performances sur divers agrès tels que les anneaux, la poutre et les barres asymétriques.
+                        Chaque routine est un mélange de précision et de beauté.
                     </p>
                 </article>
             </div>
