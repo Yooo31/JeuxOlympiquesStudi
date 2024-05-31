@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}L'Histoire des JO{% endblock %}
+
+{% block body %}
+<section class="bg-white dark:bg-gray-900 py-8 px-4 mx-auto w-2/3 lg:py-16 flex justify-center h-screen">
+    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        {% include 'components/title.html.twig' with {'title': 'L\'Histoire'} %}
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">L'histoire des Jeux Olympiques : Une saga millénaire</h2>
+
+        <p class="mb-4">Les Jeux Olympiques, nés dans l'Antiquité grecque, ont traversé les âges en tant qu'un des phares de l'humanité, reflétant son histoire, ses valeurs et son aspiration à l'excellence. Leur histoire fascinante est un récit de courage, de compétition, de paix et d'unité à travers les époques.</p>
+
+        <h2 class="text-xl font-bold mt-6 mb-2">Les origines dans l'Antiquité</h2>
+
+        <p class="mb-4">L'histoire des Jeux Olympiques débute il y a plus de 2 700 ans en Grèce antique, à Olympie, en l'honneur de Zeus, le roi des dieux. Ces jeux, débutant autour de 776 avant notre ère, étaient bien plus qu'une simple compétition sportive ; ils étaient un événement religieux et culturel majeur, rassemblant les citoyens grecs pour célébrer l'idéal de la perfection physique et mentale. Les jeux étaient une occasion de mettre en valeur les talents des athlètes dans une variété d'épreuves, allant de la course à pied et la lutte à la boxe et la course de chars.</p>
+
+        <p class="mb-4">Pendant plus de dix siècles, les Jeux Olympiques antiques ont perduré, devenant un symbole de l'identité grecque et un trait d'union entre les cités-États malgré leurs conflits sporadiques. Ils ont transcendé les différences politiques et ethniques, offrant un moment de trêve sacrée où seuls les idéaux olympiques comptaient.</p>
+
+        <h2 class="text-xl font-bold mt-6 mb-2">La période d'interruption et de redécouverte</h2>
+
+        <p class="mb-4">Malgré leur importance, les Jeux Olympiques antiques furent interrompus en 393 après J.-C. par l'empereur romain Théodose Ier, qui les considérait comme païens. Ils sombrèrent alors dans l'oubli pendant plus d'un millénaire, perdant leur place dans l'histoire jusqu'à ce qu'un visionnaire français, le baron Pierre de Coubertin, ravive leur flamme au XIXe siècle.</p>
+
+        <p class="mb-4">Convaincu du pouvoir unificateur du sport et de son potentiel pour promouvoir la paix et la compréhension internationale, de Coubertin lança le mouvement olympique moderne. En 1896, Athènes accueillit les premiers Jeux Olympiques de l'ère moderne, ramenant à la vie l'esprit des anciens jeux et lançant une tradition qui perdure jusqu'à nos jours.</p>
+
+        <h2 class="text-xl font-bold mt-6 mb-2">L'ère contemporaine</h2>
+
+        <p class="mb-4">Depuis 1896, les Jeux Olympiques ont grandi en taille, en portée et en importance, devenant l'un des événements les plus regardés au monde. Ils ont survécu à des guerres mondiales, à des boycotts politiques et à des controverses, mais ont toujours résisté, faisant preuve de leur capacité à transcender les différences et à unir les nations.</p>
+
+        <p class="mb-4">Les Jeux Olympiques contemporains sont une célébration de la diversité, de l'inclusion et de l'excellence, accueillant des milliers d'athlètes de tous les coins du globe pour rivaliser dans un esprit de fair-play et de camaraderie. Ils sont également une tribune pour les enjeux sociaux et politiques, offrant une plateforme mondiale pour promouvoir des causes telles que l'égalité des sexes, la diversité culturelle et la durabilité environnementale.</p>
+
+        <p class="mb-4">Aujourd'hui, les Jeux Olympiques continuent de captiver l'imagination du monde entier, inspirant des générations entières à poursuivre leurs rêves et à repousser les limites de ce qui est possible. Ils incarnent les valeurs de l'olympisme - l'excellence, l'amitié et le respect - et continuent de servir de phare d'espoir et de progrès pour l'humanité.</p>
+    </div>
+</section>
+{% endblock %}
